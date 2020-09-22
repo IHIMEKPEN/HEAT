@@ -35,3 +35,24 @@ example.head(10)
 example_count=vectorizer.transform(example.values)
 predictions=classifier.predict(example_count)
 predictions[:10]
+
+x_test=vectorizer.transform(x_test)
+pred=classifier.predict(x_test)
+pred[:10]
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test,pred)#calculate accuracy
+
+print(cm)
+
+tp=cm[0][0]
+fp=cm[0][1]
+fn=cm[1][0]
+tn=cm[1][1]
+
+accuracy=(tp+tn)/(tp+tn+fp+fn)
+precision=tp/(tp+fp)
+recall=tp/(tp+fn)
+print("accuracy=", accuracy)
+print("precision=", precision)
+print("recall=", recall)
